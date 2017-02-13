@@ -1,7 +1,14 @@
-<strong>{{title}}</strong>
 
-<ul id="favoritos-list">
+<ul id="favoritos-list" *ngIf="favoritos">
   <li *ngFor="let favorito of favoritos" class="favorito-item">
-    <h4>{{favorito.url}}</h4>
+    <div class="content-data">
+      <h4>{{favorito.title}}</h4>
+      <p class="url">{{favorito.url}}</p>
+      <p class="buttons">
+        <a href="{{favorito.url}}" target="_blank" class="btn btn-default">
+          Ir al marcador
+        </a>
+
+    </div>
   </li>
 </ul>
