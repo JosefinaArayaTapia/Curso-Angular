@@ -8,23 +8,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-// Importar Component desde el núcleo de Angular
-const core_1 = require("@angular/core");
-// Decorador component, indicamos en que etiqueta se va a cargar la plantilla
-let AppComponent = 
-// Clase del componente donde irán los datos y funcionalidades
-class AppComponent {
-    constructor() {
-        this.title = "APP Favoritos";
-        this.description = 'Aplicacion de Favoritos con Angular 2';
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+require("rxjs/add/operator/map");
+var FavoritoService = (function () {
+    function FavoritoService(_http) {
+        this._http = _http;
+        this.url = 'http://localhost:3678/api/';
     }
-};
-AppComponent = __decorate([
-    core_1.Component({
-        selector: 'my-app',
-        templateUrl: 'app/views/home.html'
-    }),
-    __metadata("design:paramtypes", [])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+    FavoritoService.prototype.getFavoritos = function () {
+        return this._http.get(this.url + 'favoritos')
+            .map(function (res) { return res.json(); });
+    };
+    return FavoritoService;
+}());
+FavoritoService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], FavoritoService);
+exports.FavoritoService = FavoritoService;
+//# sourceMappingURL=favorito.service.js.map

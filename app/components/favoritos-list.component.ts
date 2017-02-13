@@ -1,36 +1,36 @@
-import{Component}from '@angular/core';
+import{Component,OnInit}from '@angular/core';
+import {FavoritoService} from "../services/favorito.service";
+import {Favorito} from "../models/favorito";
 
 @Component({
 
-selector: 'favoritos-list',
-templateUrl: 'app/views/favoritos-list.html'
+	selector: 'favoritos-list',
+	templateUrl: 'app/views/favoritos-list.html',
+	providers: [FavoritoService]
 })
 
 
-export class FavoritosListComponent {
+export class FavoritosListComponent implements OnInit{
 
 	public title:string;
-	public favoritos:Array<string>;
-	public favoritosVisibles : boolean;
-	public color:string;
-	
-	constructor() {
+	public favoritos:Favorito[];
+	constructor(private _favoritoService: FavoritoService) {
 		this.title ='Lista de Favoritos';
-		this.favoritos = ['fav1','fav2','fav3','fav4'];
-		this.favoritosVisibles = false;
 	}
+	ngOnInit(){
+			console.log("FavoritosListComponent Cargado ! ");
+			this._favoritoService.getFavoritos().subscribe(
+					result => {
+						console.log(result);
+						this.favoritos= result.favoritos;
 
-	showFavoritos(s:string){
+						if(!this.favoritos){
+							alert('No existen Favoritos');
+						}
+					},
+					error =>{
 
-		this.favoritosVisibles=true;
+					}
+			);
 	}
-	hideFavoritos(){
-
-		this.favoritosVisibles=false;
-	}
-	changeColor(){
-
-		this.color="red";
-	}
-
 }
