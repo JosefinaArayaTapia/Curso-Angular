@@ -9,19 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var AppComponent = (function () {
-    function AppComponent() {
-        this.title = "APP Favoritos";
-        this.description = 'Aplicacion de Favoritos con Angular 2';
+var favorito_service_1 = require("../services/favorito.service");
+var FavoritoDetailComponent = (function () {
+    function FavoritoDetailComponent() {
     }
-    return AppComponent;
+    return FavoritoDetailComponent;
 }());
-AppComponent = __decorate([
+FavoritoDetailComponent = __decorate([
     core_1.Component({
-        selector: 'my-app',
-        templateUrl: 'app/views/home.html'
+        selector: 'favorito-detail',
+        templateUrl: 'app/views/favorito-detail.html',
+        providers: [favorito_service_1.FavoritoService]
     }),
     __metadata("design:paramtypes", [])
-], AppComponent);
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+], FavoritoDetailComponent);
+exports.FavoritoDetailComponent = FavoritoDetailComponent;
+//# sourceMappingURL=favorito-detail.component.js.map

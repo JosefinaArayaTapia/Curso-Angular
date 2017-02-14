@@ -1,0 +1,1 @@
+{"version":3,"file":"favorito-detail.component.js","sourceRoot":"","sources":["favorito-detail.component.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,sCAAkD;AAElD,iEAA+D;AAW/D,IAAa,uBAAuB;IAEhC;IAEF,CAAC;IACH,8BAAC;AAAD,CAAC,AALD,IAKC;AALY,uBAAuB;IARnC,gBAAS,CAAC;QAEP,QAAQ,EAAE,iBAAiB;QAC3B,WAAW,EAAE,gCAAgC;QAC7C,SAAS,EAAE,CAAC,kCAAe,CAAC;KAC/B,CAAC;;GAGW,uBAAuB,CAKnC;AALY,0DAAuB"}
