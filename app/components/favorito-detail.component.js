@@ -9,10 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var favorito_service_1 = require("../services/favorito.service");
 var FavoritoDetailComponent = (function () {
-    function FavoritoDetailComponent() {
+    function FavoritoDetailComponent(_favoritoService, _route, _router) {
+        this._favoritoService = _favoritoService;
+        this._route = _route;
+        this._router = _router;
     }
+    FavoritoDetailComponent.prototype.ngOnInit = function () {
+        console.log("Favorito-detail.Component Cargado ! ");
+        this.getFavorito();
+    };
+    FavoritoDetailComponent.prototype.getFavorito = function () {
+        var _this = this;
+        this._route.params.forEach(function (params) {
+            var id = params['id'];
+            _this._favoritoService.getFavorito(id).subscribe(function (result) {
+                _this.favorito = result.favorito;
+                console.log(_this.favorito);
+                if (!_this.favorito) {
+                    _this._router.navigate(['/']);
+                }
+            }, function (error) {
+            });
+        });
+    };
     return FavoritoDetailComponent;
 }());
 FavoritoDetailComponent = __decorate([
@@ -21,7 +43,9 @@ FavoritoDetailComponent = __decorate([
         templateUrl: 'app/views/favorito-detail.html',
         providers: [favorito_service_1.FavoritoService]
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [favorito_service_1.FavoritoService,
+        router_1.ActivatedRoute,
+        router_1.Router])
 ], FavoritoDetailComponent);
 exports.FavoritoDetailComponent = FavoritoDetailComponent;
 //# sourceMappingURL=favorito-detail.component.js.map
