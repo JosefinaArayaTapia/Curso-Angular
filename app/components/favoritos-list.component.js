@@ -14,6 +14,7 @@ var FavoritosListComponent = (function () {
     function FavoritosListComponent(_favoritoService) {
         this._favoritoService = _favoritoService;
         this.title = 'Lista de Favoritos';
+        this.loading = true;
     }
     FavoritosListComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -23,6 +24,9 @@ var FavoritosListComponent = (function () {
             _this.favoritos = result.favoritos;
             if (!_this.favoritos) {
                 alert('No existen Favoritos');
+            }
+            else {
+                _this.loading = false;
             }
         }, function (error) {
         });

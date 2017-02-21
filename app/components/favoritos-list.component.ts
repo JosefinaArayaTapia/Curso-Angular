@@ -13,9 +13,13 @@ import {Favorito} from "../models/favorito";
 export class FavoritosListComponent implements OnInit{
 
 	public title:string;
+	public loading:boolean;
 	public favoritos:Favorito[];
+
+
 	constructor(private _favoritoService: FavoritoService) {
 		this.title ='Lista de Favoritos';
+		this.loading=true;
 	}
 	ngOnInit(){
 			console.log("FavoritosListComponent Cargado ! ");
@@ -26,6 +30,8 @@ export class FavoritosListComponent implements OnInit{
 
 						if(!this.favoritos){
 							alert('No existen Favoritos');
+						}else{
+							this.loading=false;
 						}
 					},
 					error =>{

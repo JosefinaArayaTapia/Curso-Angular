@@ -1,3 +1,7 @@
+<div class="loading" *ngIf="loading">
+  <img src="../../assets/images/loader.gif" alt="" width="40">
+</div>
+
 <ul id="favoritos-list" *ngIf="favoritos">
   <li *ngFor="let favorito of favoritos" class="favorito-item">
     <div class="content-data">
@@ -6,6 +10,15 @@
       <p class="buttons">
         <a href="{{favorito.url}}" target="_blank" class="btn btn-default">
           Ir al marcador
+        </a>
+        <a [routerLink]="['/marcador', favorito._id]" class="btn btn-ver">
+          Ver
+        </a>
+        <a [routerLink]="['/editar-marcador', favorito._id]" class="btn btn-editar">
+          Editar
+        </a>
+        <a (click)="onBorrarConfirm(favorito._id)" class="btn btn-eliminar">
+          Eliminar
         </a>
     </div>
   </li>
