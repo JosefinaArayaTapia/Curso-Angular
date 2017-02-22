@@ -1,5 +1,5 @@
 import{Component,OnInit}from '@angular/core';
-import { Router,ActivatedRoute,Params} from '@angular/router';
+import {Router,ActivatedRoute,Params} from '@angular/router';
 import {FavoritoService} from "../services/favorito.service";
 import {Favorito} from "../models/favorito";
 @Component({
@@ -14,7 +14,6 @@ export class FavoritoAddComponent implements OnInit {
 
   public titleSection: string;
   public favorito: Favorito;
-
   constructor(
      private favoritoService: FavoritoService,
      private _route: ActivatedRoute,
@@ -24,18 +23,20 @@ export class FavoritoAddComponent implements OnInit {
    }
 
   ngOnInit() {
-      this.favorito = new Favorito("", "", "", "");
-    }
+      this.favorito = new Favorito("", "", "");
+  }
 
-    public onSubmit() {
-   console.log(this.favorito);
-   this.favoritoService.addFavorito(this.favorito).subscribe(
-     response => {
-       if (!response.favorito) {
-         //alert('Error en el servidor');
-       } else {
-         this.favorito = response.favorito;
+  public onSubmit() {
+   	this.favoritoService.addFavorito(this.favorito).subscribe(
+    response => {
+			console.log(response.favorito);
+       if (response.favorito) {
+				 console.log(response.favorito);
+				 this.favorito = response.favorito;
+				 console.log("id del favorito: "+this.favorito._id);
          this._router.navigate(['/marcador', this.favorito._id]);
+       } else {
+				 console.log("No Pudo guardar nada ");
        }
      },
      error => {
@@ -43,7 +44,4 @@ export class FavoritoAddComponent implements OnInit {
      }
    );
  }
-
-
-
 }

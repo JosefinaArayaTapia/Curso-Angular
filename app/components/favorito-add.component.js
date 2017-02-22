@@ -20,17 +20,20 @@ var FavoritoAddComponent = (function () {
         this.titleSection = "Crear favorito";
     }
     FavoritoAddComponent.prototype.ngOnInit = function () {
-        this.favorito = new favorito_1.Favorito("", "", "", "");
+        this.favorito = new favorito_1.Favorito("", "", "");
     };
     FavoritoAddComponent.prototype.onSubmit = function () {
         var _this = this;
-        console.log(this.favorito);
         this.favoritoService.addFavorito(this.favorito).subscribe(function (response) {
-            if (!response.favorito) {
+            console.log(response.favorito);
+            if (response.favorito) {
+                console.log(response.favorito);
+                _this.favorito = response.favorito;
+                console.log("id del favorito: " + _this.favorito._id);
+                _this._router.navigate(['/marcador', _this.favorito._id]);
             }
             else {
-                _this.favorito = response.favorito;
-                _this._router.navigate(['/marcador', _this.favorito._id]);
+                console.log("No Pudo guardar nada ");
             }
         }, function (error) {
         });
